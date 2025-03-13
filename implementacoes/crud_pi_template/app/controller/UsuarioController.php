@@ -13,6 +13,9 @@ class UsuarioController extends Controller {
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct() {
+        if(! $this->usuarioEstaLogado())
+            return;
+
         $this->usuarioDao = new UsuarioDAO();
         $this->usuarioService = new UsuarioService();
 
@@ -20,9 +23,19 @@ class UsuarioController extends Controller {
     }
 
     protected function list(string $msgErro = "", string $msgSucesso = "") {
-        $dados["lista"] = array();
+        $dados["lista"] = $this->usuarioDao->list();
 
         $this->loadView("usuario/list.php", $dados,  $msgErro, $msgSucesso);
+    }
+
+    protected function create() {
+        $dados['id'] = 0;
+
+        $this->loadView("usuario/form.php", $dados);
+    }
+
+    protected function save() {
+        echo "Chamou save";
     }
 
     
