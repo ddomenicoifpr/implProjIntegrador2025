@@ -47,7 +47,7 @@ require_once(__DIR__ . "/../include/menu.php");
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="selPapel">Papel</label>
+                    <label class="form-label" for="selPapel">Papel:</label>
                     <select class="form-select" name="papel" id="selPapel">
                         <option value="">Selecione o papel</option>
                         <?php foreach($dados["papeis"] as $papel): ?>

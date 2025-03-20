@@ -73,10 +73,12 @@ class UsuarioDAO {
         $sql = "INSERT INTO usuarios (nome_usuario, login, senha, papel)" .
                " VALUES (:nome, :login, :senha, :papel)";
         
+        $senhaCripto = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
+
         $stm = $conn->prepare($sql);
         $stm->bindValue("nome", $usuario->getNome());
         $stm->bindValue("login", $usuario->getLogin());
-        $stm->bindValue("senha", $usuario->getSenha());
+        $stm->bindValue("senha", $senhaCripto);
         $stm->bindValue("papel", $usuario->getPapel());
         $stm->execute();
     }
