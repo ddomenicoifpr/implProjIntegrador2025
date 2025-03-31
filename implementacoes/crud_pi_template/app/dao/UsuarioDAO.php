@@ -111,6 +111,18 @@ class UsuarioDAO {
         $stm->execute();
     }
 
+    public function quantidadeUsuarios() {
+        $conn = Connection::getConn();
+
+        $sql = "SELECT COUNT(*) AS qtd_usuarios FROM usuarios";
+
+        $stm = $conn->prepare($sql);
+        $stm->execute();
+        $result = $stm->fetchAll();
+
+        return $result[0]["qtd_usuarios"];
+    }
+
     //Método para converter um registro da base de dados em um objeto Usuario
     private function mapUsuarios($result) {
         $usuarios = array();
