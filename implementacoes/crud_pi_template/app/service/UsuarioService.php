@@ -32,4 +32,14 @@ class UsuarioService {
         return $erros;
     }
 
+    /* Método para validar se o usuário selecionou uma foto de perfil */
+    public function validarFotoPerfil(array $foto) {
+        $erros = array();
+        
+        if($foto['size'] <= 0)
+            array_push($erros, "Informe a foto para o perfil!");
+
+        return $erros;
+    }
+
 }

@@ -11,6 +11,7 @@ class Usuario {
     private ?string $login;
     private ?string $senha;
     private ?string $papel;
+    private ?string $fotoPerfil;
 
     public function getId(): ?int
     {
@@ -68,6 +69,18 @@ class Usuario {
     public function setPapel(?string $papel): self
     {
         $this->papel = $papel;
+
+        return $this;
+    }
+
+    public function getFotoPerfil(): ?string
+    {
+        return $this->fotoPerfil;
+    }
+
+    public function setFotoPerfil(?string $fotoPerfil): self
+    {
+        $this->fotoPerfil = $fotoPerfil;
 
         return $this;
     }

@@ -3,7 +3,7 @@
 #Objetivo: menu da aplicação para ser incluído em outras páginas
 
 $nome = "(Sessão expirada)";
-if(isset($_SESSION[SESSAO_USUARIO_NOME]))
+if (isset($_SESSION[SESSAO_USUARIO_NOME]))
     $nome = $_SESSION[SESSAO_USUARIO_NOME];
 
 ?>
@@ -21,24 +21,32 @@ if(isset($_SESSION[SESSAO_USUARIO_NOME]))
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                data-bs-toggle="dropdown">
+                    data-bs-toggle="dropdown">
                     Cadastros
                 </a>
-                
+
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" 
+                    <a class="dropdown-item"
                         href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">Usuários</a>
                     <a class="dropdown-item" href="#">Outro cadastro</a>
                 </div>
             </li>
 
-            <li class="nav-item active">
-                <a class="nav-link" href="<?= LOGOUT_PAGE ?>">Sair</a>
-            </li>
         </ul>
 
         <ul class="navbar-nav ms-auto mr-3">
-            <li class="nav-item active"><?= $nome ?></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarUsuario"
+                    data-bs-toggle="dropdown">
+                    <?= $nome ?>
+                </a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"
+                        href="<?= BASEURL . '/controller/PerfilController.php?action=view' ?>">Perfil</a>
+                    <a class="dropdown-item" href="<?= LOGOUT_PAGE ?>">Sair</a>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>

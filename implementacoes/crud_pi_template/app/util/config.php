@@ -33,6 +33,8 @@ define('SESSAO_USUARIO_ID', "usuarioLogadoId");
 define('SESSAO_USUARIO_NOME', "usuarioLogadoNome");
 define('SESSAO_USUARIO_PAPEL', "usuarioLogadoPapel");
 
-
+//Arquivos
+define('PATH_ARQUIVOS', __DIR__ . "/../../arquivos");
+define('BASEURL_ARQUIVOS', BASEURL . "/../arquivos");
 
 

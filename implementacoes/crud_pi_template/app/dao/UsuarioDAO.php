@@ -111,6 +111,17 @@ class UsuarioDAO {
         $stm->execute();
     }
 
+     //Método para alterar a foto de perfil de um usuário
+     public function updateFotoPerfil(Usuario $usuario) {
+        $conn = Connection::getConn();
+
+        $sql = "UPDATE usuarios SET foto_perfil = ? WHERE id_usuario = ?";
+
+        $stm = $conn->prepare($sql);
+        $stm->execute(array($usuario->getFotoPerfil(), $usuario->getId()));
+    }
+
+    //Método para retornar a quantidade de usuários salvos na base
     public function quantidadeUsuarios() {
         $conn = Connection::getConn();
 
@@ -133,6 +144,7 @@ class UsuarioDAO {
             $usuario->setLogin($reg['login']);
             $usuario->setSenha($reg['senha']);
             $usuario->setPapel($reg['papel']);
+            $usuario->setFotoPerfil($reg['foto_perfil']);
             array_push($usuarios, $usuario);
         }
 
