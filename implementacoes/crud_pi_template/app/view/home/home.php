@@ -15,7 +15,13 @@ require_once(__DIR__ . "/../include/menu.php");
         <?php echo $dados["qtdUsuarios"] ?>
     </span>
     <button class="btn btn-info" 
-        onclick="carregarUsuarios()">Ajax</button>
+        onclick="carregarUsuarios('<?= BASEURL ?>')">Ajax</button>
+
+    <div>
+        <ul id="listaUsuarios">
+            
+        </ul>
+    </div>
 </div>
 
 <script src="<?= BASEURL ?>/view/js/home_ajax.js"></script>

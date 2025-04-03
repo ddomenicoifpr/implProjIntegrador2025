@@ -112,6 +112,16 @@ class UsuarioController extends Controller {
         }
     }
 
+    protected function listJson() {
+        //Retornar uma lista de usuários em forma JSON
+        $usuarios = $this->usuarioDao->list();
+        $json = json_encode($usuarios);
+        
+        echo $json;
+
+        //[{},{},{}]
+    }
+
     private function findUsuarioById() {
         $id = 0;
         if(isset($_GET["id"]))

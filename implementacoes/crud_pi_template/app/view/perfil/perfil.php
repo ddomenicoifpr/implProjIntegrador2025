@@ -46,8 +46,8 @@ require_once(__DIR__ . "/../include/menu.php");
                 enctype="multipart/form-data" >
                 <div class="mb-3">
                     <label class="form-label" for="txtFoto">Foto de perfil: </label>
-                    <input class="form-control" type="file" id="txtFoto" name="foto" 
-                        placeholder="Informe o nome" />
+                    <input class="form-control" type="file" 
+                        id="txtFoto" name="foto" />
                 </div>
 
                 <input type="hidden" name="fotoAnterior" value="<?= $dados['usuario']->getFotoPerfil() ?>">

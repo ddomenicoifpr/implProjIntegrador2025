@@ -58,5 +58,15 @@ class Controller {
         return true;
     }
 
+    protected function getIdUsuarioLogado() {
+        if(session_status() != PHP_SESSION_ACTIVE)
+            session_start();
+        
+        if(isset($_SESSION[SESSAO_USUARIO_ID]))
+            return $_SESSION[SESSAO_USUARIO_ID];
+
+        return 0;
+    }
+
 
 }
