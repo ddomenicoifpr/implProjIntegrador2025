@@ -6,6 +6,11 @@ $nome = "(Sessão expirada)";
 if (isset($_SESSION[SESSAO_USUARIO_NOME]))
     $nome = $_SESSION[SESSAO_USUARIO_NOME];
 
+$isAdmin = false;
+if(isset($_SESSION[SESSAO_USUARIO_PAPEL]) 
+        && $_SESSION[SESSAO_USUARIO_PAPEL] == UsuarioPapel::ADMINISTRADOR)
+    $isAdmin = true; 
+
 ?>
 <nav class="navbar navbar-expand-md bg-light px-3 mb-3">
     <button class="navbar-toggler" type="button"
@@ -26,8 +31,10 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
                 </a>
 
                 <div class="dropdown-menu">
-                    <a class="dropdown-item"
-                        href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">Usuários</a>
+                    <?php if($isAdmin): ?>
+                        <a class="dropdown-item"
+                            href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">Usuários</a>
+                    <?php endif; ?>
                     <a class="dropdown-item" href="#">Outro cadastro</a>
                 </div>
             </li>

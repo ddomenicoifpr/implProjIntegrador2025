@@ -32,17 +32,35 @@ class PerfilController extends Controller {
 
     protected function save() {
         $foto = $_FILES["foto"];
+        $fotoAnterior = $_POST['fotoAnterior'];
         
         //Validar se o usuário mandou a foto de perfil
         $erros = $this->usuarioService->validarFotoPerfil($foto);
         if(! $erros) {
             //1- Salvar a foto em um arquivo
-            $this->arquivoService->salvarArquivo($foto);
-            echo "Arquivo salvo!";
+            $nomeArquivo = $this->arquivoService->salvarArquivo($foto);
             
-            //2- Atualizar o registro do usuário com o nome da foto
-            
-            exit;
+            if($nomeArquivo) {
+                //2- Atualizar o registro do usuário com o nome do arquivo da foto
+                $usuario = new Usuario();
+                $usuario->setFotoPerfil($nomeArquivo);
+                $usuario->setId($this->getIdUsuarioLogado());
+                
+                try {
+                    $this->usuarioDao->updateFotoPerfil($usuario);
+
+                    //3- Excluir o arquivo
+                    $this->arquivoService->removerArquivo($fotoAnterior);
+                    
+                    header("location: " . BASEURL . "/controller/PerfilController.php?action=view");
+                    exit;
+                } catch(PDOException $e) {
+                    array_push($erros, "Não foi possível salvar a imagem na base de dados!");
+                    array_push($erros, $e->getMessage());
+                }
+            } else {
+                array_push($erros, "Não foi possível salvar o arquivo da imagem!");
+            }
         }
 
         $idUsuarioLogado = $this->getIdUsuarioLogado();

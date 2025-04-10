@@ -27,6 +27,7 @@ require_once(__DIR__ . "/../include/menu.php");
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Foto</th>
                         <th>Nome</th>
                         <th>Login</th>
                         <th>Papel</th>
@@ -38,6 +39,12 @@ require_once(__DIR__ . "/../include/menu.php");
                     <?php foreach($dados['lista'] as $usu): ?>
                         <tr>
                             <td><?php echo $usu->getId(); ?></td>
+                            <td>
+                                <?php if($usu->getFotoPerfil()): ?>
+                                    <img src="<?= BASEURL_ARQUIVOS . "/" . $usu->getFotoPerfil() ?>"
+                                        height="100px" >
+                                <?php endif; ?>
+                            </td>
                             <td><?= $usu->getNome(); ?></td>
                             <td><?= $usu->getLogin(); ?></td>
                             <td><?= $usu->getPapel(); ?></td>

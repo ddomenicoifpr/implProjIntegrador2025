@@ -16,6 +16,12 @@ class UsuarioController extends Controller {
         if(! $this->usuarioEstaLogado())
             return;
 
+        //Restringir o acesso apenas para administradores
+        if(! $this->usuarioLogadoPapelAdmin()) {
+            echo "Acesso negado!";
+            exit;
+        }
+
         $this->usuarioDao = new UsuarioDAO();
         $this->usuarioService = new UsuarioService();
 
